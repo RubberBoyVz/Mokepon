@@ -127,3 +127,10 @@ input {
     align-items: center;
     margin-bottom: 50px;
 }
+
+#informacion-vidas{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 30px;
+    text-align: center;
+}

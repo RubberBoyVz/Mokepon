@@ -161,9 +161,15 @@ function revisarVidas() {
     if (vidasEnemigo == 0) {
         divInfoCombate.style.marginBottom = "50px";
         crearMensajeFinal("FIN DEL JUEGO: ¡Ganaste!");
+        botonAgua.style.display = "none";
+        botonFuego.style.display = "none";
+        botonTierra.style.display = "none";
     } else if (vidasJugador == 0) {
         divInfoCombate.style.marginBottom = "50px";
         crearMensajeFinal("FIN DEL JUEGO: ¡Perdiste!");
+        botonAgua.style.display = "none";
+        botonFuego.style.display = "none";
+        botonTierra.style.display = "none";
     }
 }
 

@@ -61,6 +61,7 @@ body {
     border: 8px solid #e94560;
     font-weight: bold;
     border-radius: 10px;
+    transition: 0.5s;
 }
 
 .tarjeta:hover {
@@ -105,6 +106,7 @@ input:checked + label{
     border: 8px solid #e94560;
     border-radius: 10px;
     font-family: "Finger Paint", cursive;
+    transition: 0.5s;
 }
 
 #boton-mascota:hover, #boton-reiniciar:hover {

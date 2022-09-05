@@ -3,31 +3,31 @@ let ataqueJugador, ataqueEnemigo;
 let vidasJugador = 3,
     vidasEnemigo = 3;
 
-let sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque");
-let sectionMensajes = document.getElementById("mensajes");
-let sectionReiniciar = document.getElementById("reiniciar");
-let botonMascotaJugador = document.getElementById("boton-mascota");
-let divInfoCombate = document.getElementById("informacion-combate");
-let botonReiniciar = document.getElementById("boton-reiniciar");
+const sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque");
+const sectionMensajes = document.getElementById("mensajes");
+const sectionReiniciar = document.getElementById("reiniciar");
+const botonMascotaJugador = document.getElementById("boton-mascota");
+const divInfoCombate = document.getElementById("informacion-combate");
+const botonReiniciar = document.getElementById("boton-reiniciar");
 
-let sectionSeleccionarMascota = document.getElementById("seleccionar-mascota");
-let inputHipodoge = document.getElementById("hipodoge");
-let inputCapipepo = document.getElementById("capipepo");
-let inputRatigueya = document.getElementById("ratigueya");
-let spanMascotaJugador = document.getElementById("mascota-jugador");
+const sectionSeleccionarMascota = document.getElementById("seleccionar-mascota");
+const inputHipodoge = document.getElementById("hipodoge");
+const inputCapipepo = document.getElementById("capipepo");
+const inputRatigueya = document.getElementById("ratigueya");
+const spanMascotaJugador = document.getElementById("mascota-jugador");
 
-let spanMascotaEnemigo = document.getElementById("mascota-enemigo");
+const spanMascotaEnemigo = document.getElementById("mascota-enemigo");
 
-let botonFuego = document.getElementById("boton-fuego");
-let botonAgua = document.getElementById("boton-agua");
-let botonTierra = document.getElementById("boton-tierra");
+const botonFuego = document.getElementById("boton-fuego");
+const botonAgua = document.getElementById("boton-agua");
+const botonTierra = document.getElementById("boton-tierra");
 
-let spanVidasJugador = document.getElementById("vidas-jugador");
-let spanVidasEnemigo = document.getElementById("vidas-enemigo");
+const spanVidasJugador = document.getElementById("vidas-jugador");
+const spanVidasEnemigo = document.getElementById("vidas-enemigo");
 
-let divAtaquesJugador = document.getElementById("ataques-jugador");
-let divAtaquesEnemigo = document.getElementById("ataques-enemigo");
-let parrafoResultado = document.getElementById("resultado");
+const divAtaquesJugador = document.getElementById("ataques-jugador");
+const divAtaquesEnemigo = document.getElementById("ataques-enemigo");
+const parrafoResultado = document.getElementById("resultado");
 
 function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);

@@ -71,6 +71,11 @@ body {
     transform: scale(1.1);
 }
 
+input[type="radio"]{
+    background: white;
+    color: #16213e;
+}
+
 .imagen-mokepon {
     width: 100px;
 }
@@ -81,6 +86,12 @@ label {
 
 input {
     display: none;
+}
+
+input:checked + label{
+    background-color: white;
+    color: #16213e;
+    
 }
 
 #boton-mascota, #boton-reiniciar {
@@ -101,6 +112,8 @@ input {
     transform: scale(1.1);
     transition: 0.5s;
 }
+
+
 
 #seleccionar-ataque .tarjeta {
     font-family: "Finger Paint", cursive;
@@ -133,4 +146,49 @@ input {
     grid-template-columns: 50% 50%;
     gap: 30px;
     text-align: center;
+    margin-bottom: 50px;
+    width: 30%;
+}
+
+@media (max-width: 730px) {
+    .titulo{
+        font-size: 50px;
+        margin-bottom: 50px;
+    }
+
+    .subtitulo{
+        font-size: 20px;
+    }
+
+    #boton-mascota{
+        margin-bottom: 20px;
+    }
+
+    .tarjetas{
+        flex-direction: column;
+        gap: 0px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+
+    .tarjeta{
+        transform: scale(0.7);
+        margin-bottom: -30px;
+    }
+
+    .ataque{
+        height: 100px;
+        margin-bottom: 0px;
+    }
+
+    .tarjeta:hover{
+        transform: scale(0.7);
+    }
+
+    #informacion-vidas{
+        grid-template-columns: 50% 50%;
+        gap: 2px;
+        width: 90%;
+    }
+
 }

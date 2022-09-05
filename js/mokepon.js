@@ -128,11 +128,11 @@ function resultadoCombate() {
     ) {
         vidasEnemigo--;
         spanVidasEnemigo.innerHTML = vidasEnemigo;
-        crearMensaje("GANASTE 🎉");
+        crearMensaje("RONDA GANADA");
     } else {
         vidasJugador--;
         spanVidasJugador.innerHTML = vidasJugador;
-        crearMensaje("PERDISTE 😈");
+        crearMensaje("RONDA PERDIDA");
     }
 
     revisarVidas();
@@ -177,11 +177,11 @@ function revisarVidas() {
     if (vidasEnemigo == 0) {
         let divInfoCombate = document.getElementById("informacion-combate");
         divInfoCombate.style.marginBottom = "50px";
-        crearMensajeFinal("Felicitaciones! Ganaste!");
+        crearMensajeFinal("FIN DEL JUEGO: ¡Ganaste!");
     } else if (vidasJugador == 0) {
         let divInfoCombate = document.getElementById("informacion-combate");
         divInfoCombate.style.marginBottom = "50px";
-        crearMensajeFinal("Lo siento! Perdiste!");
+        crearMensajeFinal("FIN DEL JUEGO: ¡Perdiste!");
     }
 }
 

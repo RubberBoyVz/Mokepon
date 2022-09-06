@@ -3,6 +3,8 @@ let ataqueJugador, ataqueEnemigo;
 let vidasJugador = 3,
     vidasEnemigo = 3;
 
+let mokepones = [];
+
 const sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque");
 const sectionMensajes = document.getElementById("mensajes");
 const sectionReiniciar = document.getElementById("reiniciar");
@@ -10,7 +12,9 @@ const botonMascotaJugador = document.getElementById("boton-mascota");
 const divInfoCombate = document.getElementById("informacion-combate");
 const botonReiniciar = document.getElementById("boton-reiniciar");
 
-const sectionSeleccionarMascota = document.getElementById("seleccionar-mascota");
+const sectionSeleccionarMascota = document.getElementById(
+    "seleccionar-mascota"
+);
 const inputHipodoge = document.getElementById("hipodoge");
 const inputCapipepo = document.getElementById("capipepo");
 const inputRatigueya = document.getElementById("ratigueya");
@@ -28,6 +32,22 @@ const spanVidasEnemigo = document.getElementById("vidas-enemigo");
 const divAtaquesJugador = document.getElementById("ataques-jugador");
 const divAtaquesEnemigo = document.getElementById("ataques-enemigo");
 const parrafoResultado = document.getElementById("resultado");
+
+class Mokepon {
+    constructor(nombre, foto, vida) {
+        this.nombre = nombre;
+        this.foto = foto;
+        this.vida = vida;
+    }
+}
+
+let hipodoge = new Mokepon("Hipodoge", "img/squirtle.png", 5);
+let capipepo = new Mokepon("Capipepo", "img/charmander.png", 5);
+let ratigueya = new Mokepon("Ratigueya", "img/bullbasaur.png", 5);
+
+mokepones.push(hipodoge,capipepo,ratigueya);
+
+console.log(mokepones);
 
 function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);

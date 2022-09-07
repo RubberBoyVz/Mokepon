@@ -8,6 +8,7 @@ let inputRatigueya;
 let mascotaJugador;
 
 /* */
+let numAleatorio;
 let mascotaEnemigo;
 let ataqueJugador, ataqueEnemigo;
 let vidasJugador = 3,
@@ -127,9 +128,9 @@ function seleccionarMascotaJugador() {
         mascotaJugador = ratigueya;
     } else {
         alert("No has elegido mascota");
-        contenedorTarjetas.innerHTML = "";
-        iniciarJuego();
-        sectionSeleccionarMascota.style.display = "flex";
+        //contenedorTarjetas.innerHTML = "";
+        location.reload();
+        //sectionSeleccionarMascota.style.display = "flex";
     }
 
     ataquesMokeponJugador = extraerAtaques(mascotaJugador.nombre);
@@ -162,8 +163,6 @@ function mostrarAtaques(ataques) {
     botonTierra = document.getElementById("boton-tierra");
 
     botones = document.querySelectorAll(".BAtaque");
-
-    //divInfoVidas.style.display = "none";
 }
 
 function secuenciaAtaque() {
@@ -179,32 +178,28 @@ function secuenciaAtaque() {
                 secuenciaAtaquesJugador.push("TIERRA");
                 boton.style.background = "white";
             }
+            ataqueAleatorioEnemigo();
         });
     });
-
-    ataqueAleatorioEnemigo();
 }
 
 function seleccionarMascotaEnemigo() {
-    let numAleatorio = aleatorio(0, mokepones.length - 1);
+    numAleatorio = aleatorio(0, mokepones.length - 1);
     mascotaEnemigo = mokepones[numAleatorio];
 
     spanMascotaEnemigo.innerHTML = mascotaEnemigo.nombre;
     ataquesMokeponEnemigo = extraerAtaques(mascotaEnemigo.nombre);
 
-    console.log(mascotaEnemigo)
-    console.log(ataquesMokeponEnemigo)
-
     secuenciaAtaque();
 }
 
 function ataqueAleatorioEnemigo() {
-    let numAleatorio = aleatorio(0, ataquesMokeponEnemigo.length - 1);
+    numAleatorio = aleatorio(0, ataquesMokeponEnemigo.length - 1);
     let ataqueAleatorio = ataquesMokeponEnemigo[numAleatorio];
 
-    if (ataqueAleatorio == "🔥") {
+    if (ataqueAleatorio.nombre == "🔥") {
         secuenciaAtaquesEnemigo.push("FUEGO");
-    } else if (ataqueAleatorio == "💧") {
+    } else if (ataqueAleatorio.nombre == "💧") {
         secuenciaAtaquesEnemigo.push("AGUA");
     } else {
         secuenciaAtaquesEnemigo.push("TIERRA");

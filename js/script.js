@@ -210,10 +210,13 @@ function ataqueAleatorioEnemigo() {
 
     if (ataqueAleatorio.nombre == "🔥") {
         secuenciaAtaquesEnemigo.push("FUEGO");
+        ataquesMokeponEnemigo.splice(numAleatorio, 1);
     } else if (ataqueAleatorio.nombre == "💧") {
         secuenciaAtaquesEnemigo.push("AGUA");
+        ataquesMokeponEnemigo.splice(numAleatorio, 1);
     } else {
         secuenciaAtaquesEnemigo.push("TIERRA");
+        ataquesMokeponEnemigo.splice(numAleatorio, 1);
     }
 }
 

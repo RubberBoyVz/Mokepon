@@ -22,7 +22,7 @@ body {
     margin: 35px 0 70px 0;
 }
 
-.titulo a{
+.titulo a {
     color: inherit;
     text-decoration: none;
 }
@@ -48,7 +48,7 @@ body {
     gap: 30px;
 }
 
-#tarjetas-ataques{
+#tarjetas-ataques {
     margin-bottom: 0;
 }
 
@@ -76,7 +76,7 @@ body {
     transform: scale(1.1);
 }
 
-input[type="radio"]{
+input[type="radio"] {
     background: white;
     color: #16213e;
 }
@@ -93,13 +93,13 @@ input {
     display: none;
 }
 
-input:checked + label{
+input:checked + label {
     background-color: white;
     color: #16213e;
-    
 }
 
-#boton-mascota, #boton-reiniciar {
+#boton-mascota,
+#boton-reiniciar {
     margin-top: 0px;
     width: 200px;
     height: 70px;
@@ -113,13 +113,14 @@ input:checked + label{
     transition: 0.5s;
 }
 
-#boton-mascota:hover, #boton-reiniciar:hover {
+#boton-mascota:hover,
+#boton-reiniciar:hover {
     cursor: pointer;
     transform: scale(1.1);
     transition: 0.5s;
 }
 
-#boton-reiniciar{
+#boton-reiniciar {
     margin-top: 10px;
 }
 
@@ -134,7 +135,7 @@ input:checked + label{
     color: white;
 }
 
-#mensajes{
+#mensajes {
     width: 300px;
     height: 60px;
     display: flex;
@@ -142,14 +143,14 @@ input:checked + label{
     justify-content: center;
 }
 
-#informacion-combate{
+#informacion-combate {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 30px;
 }
 
-#informacion-vidas{
+#informacion-vidas {
     display: grid;
     grid-template-columns: 50% 50%;
     text-align: center;
@@ -157,50 +158,59 @@ input:checked + label{
     width: 30%;
 }
 
-#mascota-jugador, #mascota-enemigo{
+#mascota-jugador,
+#mascota-enemigo {
     margin-bottom: 20px;
     font-size: 30px;
 }
 
 @media (max-width: 730px) {
-    .titulo{
+    .titulo {
         font-size: 50px;
         margin-bottom: 50px;
     }
 
-    .subtitulo{
+    .subtitulo {
         font-size: 20px;
     }
 
-    #boton-mascota{
+    #boton-mascota {
         margin-bottom: 20px;
     }
 
-    .tarjetas{
+    .tarjetas {
         flex-direction: column;
         gap: 0px;
         margin-top: 0px;
         margin-bottom: 10px;
     }
 
-    .tarjeta{
+    .tarjeta {
         transform: scale(0.7);
         margin-bottom: -30px;
     }
 
-    .ataque{
+    #boton-mascota {
+        margin-top: 10px;
+        transform: scale(0.7);
+    }
+
+    #boton-mascota:hover {
+        transform: scale(0.7);
+    }
+
+    .ataque {
         height: 100px;
         margin-bottom: 0px;
     }
 
-    .tarjeta:hover{
+    .tarjeta:hover {
         transform: scale(0.7);
     }
 
-    #informacion-vidas{
+    #informacion-vidas {
         grid-template-columns: 50% 50%;
         gap: 2px;
         width: 90%;
     }
-
 }

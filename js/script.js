@@ -1,3 +1,32 @@
+/* ELEMENTOS PRIMERA PANTALLA */
+const sectionSeleccionarMascota = document.getElementById(
+    "seleccionar-mascota"
+);
+const contenedorTarjetas = document.getElementById("contenedor-tarjetas");
+const botonMascotaJugador = document.getElementById("boton-mascota");
+
+/* ELEMENTOS SEGUNDA PANTALLA */
+const sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque");
+const tarjetasAtaques = document.getElementById("tarjetas-ataques");
+const divInfoCombate = document.getElementById("informacion-combate");
+const sectionMensajes = document.getElementById("mensajes");
+const parrafoResultado = document.getElementById("resultado");
+const sectionReiniciar = document.getElementById("reiniciar");
+const botonReiniciar = document.getElementById("boton-reiniciar");
+
+const divInfoVidas = document.getElementById("informacion-vidas");
+const pVidasJugador = document.getElementById("puntos-jugador");
+const spanMascotaJugador = document.getElementById("mascota-jugador");
+const divAtaquesJugador = document.getElementById("ataques-jugador");
+const pVidasEnemigo = document.getElementById("puntos-enemigo");
+const spanMascotaEnemigo = document.getElementById("mascota-enemigo");
+const divAtaquesEnemigo = document.getElementById("ataques-enemigo");
+
+const hSubtitulo = document.getElementById("subtitulo");
+
+const sectionVerMapa = document.getElementById("ver-mapa");
+const canvasMapa = document.getElementById("mapa");
+
 /* FUNCION INICIAR JUEGO */
 let opcionDeMokepones;
 let inputHipodoge;
@@ -27,31 +56,8 @@ let contadorVictorias = 0;
 let contadorDerrotas = 0;
 let contadorEmpates = 0;
 
-/* ELEMENTOS PRIMERA PANTALLA */
-const sectionSeleccionarMascota = document.getElementById(
-    "seleccionar-mascota"
-);
-const contenedorTarjetas = document.getElementById("contenedor-tarjetas");
-const botonMascotaJugador = document.getElementById("boton-mascota");
-
-/* ELEMENTOS SEGUNDA PANTALLA */
-const sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque");
-const tarjetasAtaques = document.getElementById("tarjetas-ataques");
-const divInfoCombate = document.getElementById("informacion-combate");
-const sectionMensajes = document.getElementById("mensajes");
-const parrafoResultado = document.getElementById("resultado");
-const sectionReiniciar = document.getElementById("reiniciar");
-const botonReiniciar = document.getElementById("boton-reiniciar");
-
-const divInfoVidas = document.getElementById("informacion-vidas");
-const pVidasJugador = document.getElementById("puntos-jugador");
-const spanMascotaJugador = document.getElementById("mascota-jugador");
-const divAtaquesJugador = document.getElementById("ataques-jugador");
-const pVidasEnemigo = document.getElementById("puntos-enemigo");
-const spanMascotaEnemigo = document.getElementById("mascota-enemigo");
-const divAtaquesEnemigo = document.getElementById("ataques-enemigo");
-
-const hSubtitulo = document.getElementById("subtitulo");
+let lienzo = canvasMapa.getContext("2d");
+let imagenCapipepo = new Image();
 
 /* CLASE Y OBJETOS MOKEPON */
 class Mokepon {
@@ -97,6 +103,7 @@ function iniciarJuego() {
     sectionSeleccionarAtaque.style.display = "none";
     sectionMensajes.style.display = "none";
     sectionReiniciar.style.display = "none";
+    sectionVerMapa.style.display = "none";
 
     mokepones.forEach((mokepon) => {
         opcionDeMokepones = `
@@ -119,8 +126,19 @@ function iniciarJuego() {
 }
 
 function seleccionarMascotaJugador() {
-    sectionSeleccionarAtaque.style.display = "flex";
+    // sectionSeleccionarAtaque.style.display = "flex";
     sectionSeleccionarMascota.style.display = "none";
+    sectionVerMapa.style.display = "flex";
+
+    imagenCapipepo.src = capipepo.foto;
+
+    lienzo.drawImage(
+        imagenCapipepo,
+        20,
+        40,
+        100,
+        100
+    );
 
     if (inputHipodoge.checked) {
         spanMascotaJugador.innerHTML = hipodoge.nombre;

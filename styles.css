@@ -32,7 +32,8 @@ body {
 }
 
 #seleccionar-mascota,
-#seleccionar-ataque {
+#seleccionar-ataque,
+#ver-mapa {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -163,6 +164,17 @@ input:checked + label {
 #mascota-enemigo {
     margin-bottom: 20px;
     font-size: 30px;
+}
+
+#ver-mapa {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#mapa{
+    margin: 30px;
+    border: 2px solid white;
 }
 
 @media (max-width: 915px) {

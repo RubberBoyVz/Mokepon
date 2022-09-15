@@ -48,6 +48,10 @@ body {
     gap: 30px;
 }
 
+#tarjetas-ataques{
+    margin-bottom: 0;
+}
+
 .tarjeta {
     display: flex;
     flex-direction: column-reverse;
@@ -115,7 +119,9 @@ input:checked + label{
     transition: 0.5s;
 }
 
-
+#boton-reiniciar{
+    margin-top: 10px;
+}
 
 #seleccionar-ataque .tarjeta {
     font-family: "Finger Paint", cursive;
@@ -140,14 +146,12 @@ input:checked + label{
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 #informacion-vidas{
     display: grid;
     grid-template-columns: 50% 50%;
-    gap: 30px;
     text-align: center;
     margin-bottom: 50px;
     width: 30%;

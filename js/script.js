@@ -80,7 +80,8 @@ mapa.height = alturaBuscada;
 
 /* CLASE Y OBJETOS MOKEPON */
 class Mokepon {
-    constructor(nombre, foto, vida) {
+    constructor(nombre, foto, vida, id = null) {
+        this.id = id;
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
@@ -104,60 +105,37 @@ let hipodoge = new Mokepon("Hipodoge", "img/squirtle.png", 5);
 let capipepo = new Mokepon("Capipepo", "img/bullbasaur.png", 5);
 let ratigueya = new Mokepon("Ratigueya", "img/charmander.png", 5);
 
-let ratilectro = new Mokepon("Ratilectro", "img/pikachu.png", 5);
-let gatipet = new Mokepon("Gatipet", "img/meowth.png", 5);
-let somnioso = new Mokepon("Somnioso", "img/snorlax.png", 5);
+const HIPODOGE_ATAQUES = [
+    { nombre: "💧", id: "boton-agua" },
+    { nombre: "💧", id: "boton-agua" },
+    { nombre: "💧", id: "boton-agua" },
+    { nombre: "🌱", id: "boton-tierra" },
+    { nombre: "🔥", id: "boton-fuego" },
+];
 
-hipodoge.ataques.push(
-    { nombre: "💧", id: "boton-agua" },
-    { nombre: "💧", id: "boton-agua" },
-    { nombre: "💧", id: "boton-agua" },
+const CAPIPEPO_ATAQUES = [
     { nombre: "🌱", id: "boton-tierra" },
-    { nombre: "🔥", id: "boton-fuego" }
-);
+    { nombre: "🌱", id: "boton-tierra" },
+    { nombre: "🌱", id: "boton-tierra" },
+    { nombre: "💧", id: "boton-agua" },
+    { nombre: "🔥", id: "boton-fuego" },
+];
 
-capipepo.ataques.push(
-    { nombre: "🌱", id: "boton-tierra" },
-    { nombre: "🌱", id: "boton-tierra" },
-    { nombre: "🌱", id: "boton-tierra" },
-    { nombre: "💧", id: "boton-agua" },
-    { nombre: "🔥", id: "boton-fuego" }
-);
-
-ratigueya.ataques.push(
+const RATIGUEYA_ATAQUES = [
     { nombre: "🔥", id: "boton-fuego" },
     { nombre: "🔥", id: "boton-fuego" },
     { nombre: "🔥", id: "boton-fuego" },
     { nombre: "💧", id: "boton-agua" },
-    { nombre: "🌱", id: "boton-tierra" }
-);
+    { nombre: "🌱", id: "boton-tierra" },
+];
 
-ratilectro.ataques.push(
-    { nombre: "🔥", id: "boton-fuego" },
-    { nombre: "🔥", id: "boton-fuego" },
-    { nombre: "🔥", id: "boton-fuego" },
-    { nombre: "💧", id: "boton-agua" },
-    { nombre: "🌱", id: "boton-tierra" }
-);
+hipodoge.ataques.push(...HIPODOGE_ATAQUES);
 
-gatipet.ataques.push(
-    { nombre: "🌱", id: "boton-tierra" },
-    { nombre: "🌱", id: "boton-tierra" },
-    { nombre: "🌱", id: "boton-tierra" },
-    { nombre: "💧", id: "boton-agua" },
-    { nombre: "🔥", id: "boton-fuego" }
-);
+capipepo.ataques.push(...CAPIPEPO_ATAQUES);
 
-somnioso.ataques.push(
-    { nombre: "💧", id: "boton-agua" },
-    { nombre: "💧", id: "boton-agua" },
-    { nombre: "💧", id: "boton-agua" },
-    { nombre: "🌱", id: "boton-tierra" },
-    { nombre: "🔥", id: "boton-fuego" }
-);
+ratigueya.ataques.push(...RATIGUEYA_ATAQUES);
 
 mokepones.push(hipodoge, capipepo, ratigueya);
-mokeponesEnemigos.push(ratilectro, gatipet, somnioso);
 
 function iniciarJuego() {
     sectionSeleccionarAtaque.style.display = "none";
@@ -219,7 +197,7 @@ function seleccionarMascotaJugador() {
     seleccionarMokepon(mascotaJugador.nombre);
 
     ataquesMokeponJugador = extraerAtaques(mascotaJugador.nombre, mokepones);
-    seleccionarMascotaEnemigo();
+    //seleccionarMascotaEnemigo();
 
     iniciarMapa();
     pintarCanvas();
@@ -398,7 +376,6 @@ function pintarCanvas() {
     );
 
     mascotaJugador.pintarMokepon();
-    mascotaEnemigo.pintarMokepon();
 
     enviarPosicion(mascotaJugador.x, mascotaJugador.y);
 
@@ -414,6 +391,40 @@ function enviarPosicion(x, y) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({ x, y }),
+    }).then(function (res) {
+        if (res.ok) {
+            res.json().then(function ({ enemigos }) {
+                console.log(enemigos);
+
+                enemigos.forEach((enemigo) => {
+                    const mokeponNombre = enemigo.mokepon.nombre || "";
+                    if (mokeponNombre == "Hipodoge") {
+                        mascotaEnemigo = new Mokepon(
+                            "Hipodoge",
+                            "img/squirtle.png",
+                            5
+                        );
+                    } else if (mokeponNombre == "Capipepo") {
+                        mascotaEnemigo = new Mokepon(
+                            "Capipepo",
+                            "img/bullbasaur.png",
+                            5
+                        );
+                    } else if (mokeponNombre == "Ratigueya") {
+                        mascotaEnemigo = new Mokepon(
+                            "Ratigueya",
+                            "img/charmander.png",
+                            5
+                        );
+                    }
+
+                    mascotaEnemigo.x = enemigo.x;
+                    mascotaEnemigo.y = enemigo.y;
+
+                    mascotaEnemigo.pintarMokepon();
+                });
+            });
+        }
     });
 }
 

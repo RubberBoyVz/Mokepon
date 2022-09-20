@@ -256,26 +256,17 @@ function secuenciaAtaque() {
                 secuenciaAtaquesJugador.push("TIERRA");
                 boton.style.display = "none";
             }
-            ataqueAleatorioEnemigo();
-            if (
-                secuenciaAtaquesJugador.length == 5 &&
-                secuenciaAtaquesEnemigo.length == 5
-            ) {
-                mostrarSecuenciasAtaques();
+            if (secuenciaAtaquesJugador.length == 5) {
+                enviarAtaques();
             }
         });
     });
 }
 
-function seleccionarMascotaEnemigo() {
-    numAleatorio = aleatorio(0, mokeponesEnemigos.length - 1);
-    mascotaEnemigo = mokeponesEnemigos[numAleatorio];
-
-    spanMascotaEnemigo.innerHTML = mascotaEnemigo.nombre;
-    ataquesMokeponEnemigo = extraerAtaques(
-        mascotaEnemigo.nombre,
-        mokeponesEnemigos
-    );
+function seleccionarMascotaEnemigo(enemigo) {
+    spanMascotaEnemigo.innerHTML = enemigo.mokepon.nombre;
+    ataquesMokeponEnemigo = enemigo.ataques;
+    secuenciaAtaque();
 }
 
 function ataqueAleatorioEnemigo() {
@@ -294,22 +285,18 @@ function ataqueAleatorioEnemigo() {
     }
 }
 
-function mostrarSecuenciasAtaques() {
+function enviarAtaques() {
     hSubtitulo.innerHTML = "Resultado del combate";
 
-    secuenciaAtaquesJugador.forEach((ataque) => {
-        let parrafoAtaqueJugador = document.createElement("p");
-        parrafoAtaqueJugador.innerHTML = ataque;
-        divAtaquesJugador.appendChild(parrafoAtaqueJugador);
+    fetch(`http://localhost:8080/mokepon/${jugadorId}/ataques`, {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            ataques: secuenciaAtaquesJugador,
+        }),
     });
-
-    secuenciaAtaquesEnemigo.forEach((ataque) => {
-        let parrafoAtaquesEnemigo = document.createElement("p");
-        parrafoAtaquesEnemigo.innerHTML = ataque;
-        divAtaquesEnemigo.appendChild(parrafoAtaquesEnemigo);
-    });
-
-    resultadoCombate();
 }
 
 function resultadoCombate() {
@@ -379,9 +366,10 @@ function pintarCanvas() {
 
     enviarPosicion(mascotaJugador.x, mascotaJugador.y);
 
-    if (mascotaJugador.velocidadX !== 0 || mascotaJugador.velocidadY !== 0) {
-        revisarColision();
-    }
+    mokeponesEnemigos.forEach(function (mokepon) {
+        mokepon.pintarMokepon();
+        revisarColision(mokepon);
+    });
 }
 
 function enviarPosicion(x, y) {
@@ -396,8 +384,9 @@ function enviarPosicion(x, y) {
             res.json().then(function ({ enemigos }) {
                 console.log(enemigos);
 
-                enemigos.forEach((enemigo) => {
+                mokeponesEnemigos = enemigos.map((enemigo) => {
                     const mokeponNombre = enemigo.mokepon.nombre || "";
+                    console.log(mokeponNombre);
                     if (mokeponNombre == "Hipodoge") {
                         mascotaEnemigo = new Mokepon(
                             "Hipodoge",
@@ -418,10 +407,12 @@ function enviarPosicion(x, y) {
                         );
                     }
 
+                    seleccionarMascotaEnemigo(enemigo);
+
                     mascotaEnemigo.x = enemigo.x;
                     mascotaEnemigo.y = enemigo.y;
 
-                    mascotaEnemigo.pintarMokepon();
+                    return mascotaEnemigo;
                 });
             });
         }
@@ -468,7 +459,7 @@ function presionarTecla(evento) {
     }
 }
 
-function revisarColision() {
+function revisarColision(mascotaEnemigo) {
     const arribaEnemigo = mascotaEnemigo.y;
     const abajoEnemigo = mascotaEnemigo.y + mascotaEnemigo.alto;
     const derechaEnemigo = mascotaEnemigo.x + mascotaEnemigo.ancho;
@@ -489,7 +480,6 @@ function revisarColision() {
     }
     detenerMovimiento();
     clearInterval(intervalo);
-    alert("EMPIEZA EL COMBATE");
     sectionVerMapa.style.display = "none";
     sectionSeleccionarAtaque.style.display = "flex";
 

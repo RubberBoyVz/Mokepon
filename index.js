@@ -57,7 +57,6 @@ app.post("/mokepon/:jugadorId", (req, res) => {
     }
 
     console.log(jugadores);
-    console.log(jugadorId);
 
     res.end();
 });
@@ -95,6 +94,17 @@ app.post("/mokepon/:jugadorId/ataques", (req, res) => {
     }
 
     res.end();
+});
+
+app.get("/mokepon/:jugadorId/ataques", (req, res) => {
+    const jugadorId = req.params.jugadorId || "";
+    const jugador = jugadores.find((jugador) => jugador.id === jugadorId);
+
+    
+
+    res.send({
+        ataques: jugador.ataques || [],
+    });
 });
 
 app.listen(8080, () => {
